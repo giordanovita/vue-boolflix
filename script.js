@@ -15,7 +15,9 @@ function initVue(){
         data: {
             query:'',
             mouvies:[],
-            tvSeries:[]
+            tvSeries:[],
+            imgPath:'http://image.tmdb.org/t/p/w342/',
+            starsScore:''
 
                     },
         /* mounted:{
@@ -47,10 +49,10 @@ function initVue(){
                         return this.query='';
                     })
 
-
+/* 
                           .catch(() => {
                             console.log('Errore');
-                        });  
+                        });   */
                 },
 
                 showFlag:function(language){
@@ -65,12 +67,21 @@ function initVue(){
                     }
                     else if(language =='es'){
                         return '<img src="img/es.png">';
-                    }else if(language =='us'){
-                        return '<img src="img/us.png">';
                     }
                     else{
                         return language
                     }
+                },
+
+                showStars:function(elem){
+                    let stars= Math.round((elem) / 2);
+
+                    return stars
+                    
+                   
+
+                   
+    
                 }
                 
         

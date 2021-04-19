@@ -21,11 +21,11 @@
 </head>
 <body>
     <div id="app" class="container">
-
+      <div class="sub-container">
         <header>
             <div>
                 <h1>Boolfix</h1>
-                <input v-model='query' type="text">
+                <input v-model='query' type="text" @keydown.enter="search()">
                 <button @click='search()'>Cerca</button>
             </div>
         </header>
@@ -34,22 +34,32 @@
             <div>
                 <ul>
                     <li v-for='item in mouvies'>
-                        <div>{{item.title}}</div>
-                        <div>{{item.original_title}}</div>
-                        <div v-html="showFlag(item.original_language)">  </div>
-                        <div>{{item.vote_average}}</div>
-                        
+                        <img class="poster" v-bind:src="imgPath+item.poster_path"> 
+                        <div class="data-film">                     
+                            <h3>{{item.title}}</h3>
+                            <h5>{{item.original_title}}</h5>
+                            <span v-html="showFlag(item.original_language)">  </span>
+                            <h6 >
+                                <i class="fas fa-star" v-for="elem in showStars(item.vote_average)"></i>
+                                <i class="far fa-star" v-for="elem in (5 - showStars(item.vote_average))"></i>
+                            </h6>
+                        </div>
 
                     </li>
                 </ul>
 
                 <ul>
                     <li v-for='item in tvSeries'>
-                        <div>{{item.name}}</div>
-                        <div>{{item.original_name}}</div>
-                        <div v-html="showFlag(item.original_language)">  </div>
-                        <div>{{item.vote_average}}</div>
-                        
+                        <img class="poster" v-bind:src="imgPath+item.poster_path"> 
+                        <div class="data-film">
+                            <h3>{{item.name}}</h3>
+                            <h6>{{item.original_name}}</h6>
+                            <div v-html="showFlag(item.original_language)">  </div>
+                            <h6 >
+                                <i class="fas fa-star" v-for="elem in showStars(item.vote_average)"></i>
+                                <i class="far fa-star" v-for="elem in (5 - showStars(item.vote_average))"></i>
+                            </h6>
+                        </div>   
 
                     </li>
                 </ul>
@@ -57,7 +67,7 @@
         </main>
 
 
-
+     </div>
     </div>
 
 
