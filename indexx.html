@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- font awesame -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <!-- vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+    <!-- jquery -->
+<!--     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --> 
+   <!-- css -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+
+        <header>
+            <div>
+                <h1>Boolfix</h1>
+                <input v-model='query' type="text">
+                <button @click='search()'>Cerca</button>
+            </div>
+        </header>
+
+        <main>
+            <div>
+                <ul>
+                    <li v-for='item in mouvies'>
+                        <div>{{item.title}}</div>
+                        <div>{{item.original_title}}</div>
+                        <div v-html="showFlag(item.original_language)">  </div>
+                        <div>{{item.vote_average}}</div>
+                        
+
+                    </li>
+                </ul>
+
+                <ul>
+                    <li v-for='item in tvSeries'>
+                        <div>{{item.name}}</div>
+                        <div>{{item.original_name}}</div>
+                        <div v-html="showFlag(item.original_language)">  </div>
+                        <div>{{item.vote_average}}</div>
+                        
+
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+
+
+    </div>
+
+
+</body>
+</html>
