@@ -14,10 +14,10 @@ function initVue(){
         el: '#app',
         data: {
             query:'',
-            mouvies:[],
+            movies:[],
             tvSeries:[],
             imgPath:'http://image.tmdb.org/t/p/w342/',
-            starsScore:''
+            'info':false
 
                     },
         /* mounted:{
@@ -33,8 +33,10 @@ function initVue(){
                         'query': this.query
                          }
                     }).then(data =>{
-                        this.mouvies= data.data.results;
-                       // console.log(this.mouvies)
+                        this.movies= data.data.results;
+                        
+                        console.log(this.movies)
+                        
                         return this.query='';
                     })
 
@@ -45,14 +47,22 @@ function initVue(){
                          }
                     }).then(data =>{
                         this.tvSeries= data.data.results;
+
+                        for(let i=0;i<this.tvSeries.length;i++){
+                            let serie=this.tvSeries[i];
+                           // console.log(serie)
+                            serie.vote_count=false
+                               
+                        }
+                        
                         console.log(this.tvSeries)
                         return this.query='';
                     })
 
-/* 
+  
                           .catch(() => {
                             console.log('Errore');
-                        });   */
+                        });    
                 },
 
                 showFlag:function(language){
@@ -77,15 +87,36 @@ function initVue(){
                     let stars= Math.round((elem) / 2);
 
                     return stars
-                    
-                   
+                },
 
-                   
-    
+                showInfo:function(el){
+                    const index= this.movies.indexOf(el);
+                    console.log(this.movies[index].adult)
+                    this.movies[index].adult=true;
+                    this.info=true
+                },
+
+                showInfoSerie:function(el){
+                    const index= this.tvSeries.indexOf(el);
+                    console.log(this.tvSeries[index].vote_count)
+                    this.tvSeries[index].vote_count=true;
+                    this.info=true
+                },
+
+                hideInfo:function(el){
+                    const index= this.movies.indexOf(el);
+                    console.log(this.movies[index].adult)
+                    this.movies[index].adult=false;
+ 
+                },
+
+                hideInfoSerie:function(el){
+                    const index= this.tvSeries.indexOf(el);
+                    console.log(this.tvSeries[index].vote_count)
+                    this.tvSeries[index].vote_count=false;
+ 
                 }
-                
-        
-
+               
             }
         })
     }
