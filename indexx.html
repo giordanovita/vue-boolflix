@@ -26,8 +26,8 @@
                     <img @click='returnIntro()' src="https://fontmeme.com/permalink/210419/4a516320d47a6a57a93d3cb02a3ef22f.png" alt="">
                 </span>
                 <span class="right-side">
-                    <input v-model='query' type="text" @keydown.enter="search()">
-                    <button @click='search()'>Cerca</button>
+                    <input v-model='query' type="text" @keydown.enter="search()" placeholder="Cerca il tuo film o serie...">
+                    <i  @click='search()' class="fas fa-search"></i>
                 </span>
             </div>
         </header>
@@ -42,7 +42,8 @@
             </div>
 
           <div v-show='researchedList' class="sub-cont">
-            <div >
+            <div>
+                <h2 class='label-list' v-if='(movies.length)>0'>Film :</h2>
                 <ul class="films-list"> 
                     <li v-if="(item.poster_path) != null" v-for='(item,index) in movies' >
                         <img @mouseover='showInfo(item)' v-if='!((item.adult)&&(info))' class="poster" v-bind:src="(imgPath+item.poster_path)"> 
@@ -51,7 +52,7 @@
                                 <span>Titolo :</span>  
                                 {{item.title}} 
                             </h4>
-                            <h6 v-if='item.title!=item.original_title'>
+                            <h6 v-if='item.title.toUpperCase!=item.original_title.toUpperCase'>
                                 <span>Titolo originale:</span>
                                 {{item.original_title}}
                             </h6>
@@ -62,13 +63,14 @@
                                 <i class="far fa-star" v-for="elem in (5 - showStars(item.vote_average))"></i>
                             </h6>
                             <h6 >
-                                <span >Overview:</span>
+                                <span v-if='item.overview!=""'>Overview:</span>
                                 {{item.overview}}
                             </h6>
                         </div>
 
                     </li>
                 </ul>
+                <h2 class='label-list' v-if='(tvSeries.length)>0'>Serie TV :</h2>
                 <ul class="series-list">
                     
                     <li v-if="(item.poster_path) != null" v-for='item in tvSeries' >
@@ -78,7 +80,7 @@
                                 <span>Serie TV :</span>  
                                 {{item.name}}
                             </h4>
-                            <h6 v-if='item.name!=item.original_name'>
+                            <h6 v-if='item.name.toUpperCase!=item.original_name.toUpperCase'>
                                 <span>Titolo originale:</span>  
                                 {{item.original_name}}
                             </h6>
@@ -89,7 +91,7 @@
                                 <i class="far fa-star" v-for="elem in (5 - showStars(item.vote_average))"></i>
                             </h6>
                             <h6 >
-                                <span >Overview:</span>
+                                <span v-if='item.overview!=""'>Overview:</span>
                                 {{item.overview}}
                             </h6>
                         </div>   

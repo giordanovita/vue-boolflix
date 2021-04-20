@@ -29,33 +29,35 @@ header{
     display:flex;
     align-items: center;
 }
- .left-side{
-    flex-grow: 1;
 
+.left-side{
+    flex-grow: 1;
 } 
+
+.left-side img, button{
+    cursor: pointer;
+}
 
 .right-side input{
     height: 40px;
-    width: 250px;
-    padding: 10px 15px;
+    width: 300px;
+    padding: 10px 15px 10px 45px;
     font-size: 20px;
     border-radius: 10px;
     background-color: rgb(27, 27, 27);
     border:none;
     color: white;
+    position:relative;
 
 }
 
-.right-side button{
-    background-color: rgb(220, 26, 40);
-    line-height: normal;
-    padding: 10px 15px;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 8px;
-    border:none;
-    margin-left: 20px;
-
+.right-side i{
+    color: rgb(212, 34, 46);
+    font-size:25px ;
+    position: absolute;
+    top: 42px;
+    right: 333px;
+    cursor: pointer;
 }
 
 main{
@@ -95,35 +97,28 @@ h3.intro-content{
     padding-top: 20px;
 }
 
- 
-
 .sub-cont{
      width: 90%;
     height: 100%;
     margin: auto;
 }
 
-
-
 ul{
     list-style-type: none;
    display: grid;
-    grid-template-columns: auto auto auto auto auto; 
+    grid-template-columns: auto auto auto auto auto auto; 
 }
-
-
  
 li{
    border: 1px solid white;
-   width: 220px;
+   width: 190px;
    height: 270px;
    margin: 10px 0;
    position: relative;
 }
 .poster{
-    width: 218px;
+    width: 188px;
     height: 268px;
-    z-index: 999;
 }
 
 .data-film{
@@ -160,13 +155,19 @@ li{
     border-radius: 10px;
    }
    ::-webkit-scrollbar-thumb:hover{
-    background: rgb(48, 54, 57);
+    background:rgb(5, 6, 7) ;
    }
    ::-webkit-scrollbar-track{
-    background:rgb(5, 6, 7);
+    background:rgb(48, 54, 57);
     border-radius: 10px;
     box-shadow: inset 7px 10px 12px #f0f0f0;
    } 
+
+   .label-list{
+       width: 50%;
+       color: white;
+       padding-top: 20px;
+   }
 
 
 
