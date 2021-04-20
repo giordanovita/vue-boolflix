@@ -17,7 +17,9 @@ function initVue(){
             movies:[],
             tvSeries:[],
             imgPath:'http://image.tmdb.org/t/p/w342/',
-            'info':false
+            'info':false,
+            'intro':true,
+            'researchedList':false
 
                     },
         /* mounted:{
@@ -36,7 +38,8 @@ function initVue(){
                         this.movies= data.data.results;
                         
                         console.log(this.movies)
-                        
+                        this.intro=false
+                        this.researchedList=true
                         return this.query='';
                     })
 
@@ -54,7 +57,10 @@ function initVue(){
                             serie.vote_count=false
                                
                         }
-                        
+                        this.intro=false
+                        this.researchedList=true
+
+
                         console.log(this.tvSeries)
                         return this.query='';
                     })
@@ -63,6 +69,12 @@ function initVue(){
                           .catch(() => {
                             console.log('Errore');
                         });    
+                },
+
+                returnIntro:function(){
+                    this.intro=true;
+                    this.researchedList=false
+
                 },
 
                 showFlag:function(language){

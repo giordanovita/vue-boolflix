@@ -23,7 +23,7 @@
         <header>
             <div class="header-cont">
                 <span class="left-side">
-                    <img src="https://fontmeme.com/permalink/210419/4a516320d47a6a57a93d3cb02a3ef22f.png" alt="">
+                    <img @click='returnIntro()' src="https://fontmeme.com/permalink/210419/4a516320d47a6a57a93d3cb02a3ef22f.png" alt="">
                 </span>
                 <span class="right-side">
                     <input v-model='query' type="text" @keydown.enter="search()">
@@ -33,12 +33,19 @@
         </header>
 
         <main>
+            <div v-show='intro' class="intro-bg">
+                <div></div>
+                <h1 class='intro-content'>Film, serie TV e tanto altro.</h1>
+                <h1 class='intro-content'>Senza limiti.</h1>
+                <h3 class='intro-content'>Guarda ciò che vuoi ovunque. Disdici quando vuoi.</h3>
 
-          <div class="sub-cont">
-            <div>
-                <ul> 
-                    <li  v-for='(item,index) in movies'>
-                        <img @mouseover='showInfo(item)' v-if='!((item.adult)&&(info))' class="poster" v-bind:src="imgPath+item.poster_path"> 
+            </div>
+
+          <div v-show='researchedList' class="sub-cont">
+            <div >
+                <ul class="films-list"> 
+                    <li v-if="(item.poster_path) != null" v-for='(item,index) in movies' >
+                        <img @mouseover='showInfo(item)' v-if='!((item.adult)&&(info))' class="poster" v-bind:src="(imgPath+item.poster_path)"> 
                         <div  @mouseleave='hideInfo(item)' v-else v-show='info' class="data-film">                     
                             <h4>
                                 <span>Titolo :</span>  
@@ -62,9 +69,9 @@
 
                     </li>
                 </ul>
-
-                <ul>
-                    <li v-for='item in tvSeries'>
+                <ul class="series-list">
+                    
+                    <li v-if="(item.poster_path) != null" v-for='item in tvSeries' >
                         <img @mouseover='showInfoSerie(item)' v-if='!((item.vote_count)&&(info))' class="poster" v-bind:src="imgPath+item.poster_path"> 
                         <div  @mouseleave='hideInfoSerie(item)' v-else v-show='info' class="data-film">
                             <h4>

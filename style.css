@@ -66,7 +66,36 @@ main{
 
 }
 
+.intro-bg{
+    width: 100%;
+    height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+}
 
+.intro-bg div{
+    width: 100%;
+    height: calc(100vh - 110px);
+    background-image: url(img/intro-bg.jpg);;
+    background-position: center;
+    background-size: cover; 
+    position: absolute;
+    opacity: 0.6;
+}
+
+ .intro-content{
+    z-index: 99;
+}
+
+h3.intro-content{
+    padding-top: 20px;
+}
+
+ 
 
 .sub-cont{
      width: 90%;
@@ -74,11 +103,15 @@ main{
     margin: auto;
 }
 
+
+
 ul{
     list-style-type: none;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
+   display: grid;
+    grid-template-columns: auto auto auto auto auto; 
 }
+
+
  
 li{
    border: 1px solid white;
