@@ -19,13 +19,12 @@ function initVue(){
             imgPath:'http://image.tmdb.org/t/p/w342/',
             'info':false,
             'intro':true,
-            'researchedList':false
+            'researchedList':false,
+             actors:[],
+             movieID:''
 
                     },
-        /* mounted:{
-           
-            },
- */
+         
             methods:{
                 search:function(){
                         
@@ -57,6 +56,7 @@ function initVue(){
                             serie.vote_count=false
                                
                         }
+                       
                         this.intro=false
                         this.researchedList=true
 
@@ -91,7 +91,7 @@ function initVue(){
                         return '<img src="img/es.png">';
                     }
                     else{
-                        return language
+                        return language.toUpperCase();
                     }
                 },
 
@@ -103,21 +103,18 @@ function initVue(){
 
                 showInfo:function(el){
                     const index= this.movies.indexOf(el);
-                    console.log(this.movies[index].adult)
                     this.movies[index].adult=true;
                     this.info=true
                 },
 
                 showInfoSerie:function(el){
                     const index= this.tvSeries.indexOf(el);
-                    console.log(this.tvSeries[index].vote_count)
                     this.tvSeries[index].vote_count=true;
                     this.info=true
                 },
 
                 hideInfo:function(el){
                     const index= this.movies.indexOf(el);
-                    console.log(this.movies[index].adult)
                     this.movies[index].adult=false;
  
                 },
@@ -127,11 +124,24 @@ function initVue(){
                     console.log(this.tvSeries[index].vote_count)
                     this.tvSeries[index].vote_count=false;
  
-                }
-               
+                },
+ 
+                showActors:function(id){
+                    axios.get('https://api.themoviedb.org/3/movie/' + id,{
+                        params: {
+                        'api_key':'624a732bf22bf0e8515847d96dff0492',
+                        append_to_response: 'credits'
+                         }
+                    }).then(data =>{
+                        this.movieID = data.data.id;
+                        this.info = !this.info;
+                        this.actors = data.data.credits.cast.slice(0,5);
+                                 
+                                     })
+                            }
+                    }
             }
-        })
-    }
+    )}
 
 
 function init() {

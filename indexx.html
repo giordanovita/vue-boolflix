@@ -26,7 +26,7 @@
                     <img @click='returnIntro()' src="https://fontmeme.com/permalink/210419/4a516320d47a6a57a93d3cb02a3ef22f.png" alt="">
                 </span>
                 <span class="right-side">
-                    <input v-model='query' type="text" @keydown.enter="search()" placeholder="Cerca il tuo film o serie...">
+                    <input v-model='query' type="text" @keydown.enter="search()" placeholder="Cerca un film o una serie...">
                     <i  @click='search()' class="fas fa-search"></i>
                 </span>
             </div>
@@ -45,9 +45,9 @@
             <div>
                 <h2 class='label-list' v-if='(movies.length)>0'>Film :</h2>
                 <ul class="films-list"> 
-                    <li v-if="(item.poster_path) != null" v-for='(item,index) in movies' >
-                        <img @mouseover='showInfo(item)' v-if='!((item.adult)&&(info))' class="poster" v-bind:src="(imgPath+item.poster_path)"> 
-                        <div  @mouseleave='hideInfo(item)' v-else v-show='info' class="data-film">                     
+                    <li  v-if="(item.poster_path) != null" v-for='(item,index) in movies'  >
+                        <img   @mouseover='showInfo(item)' v-if='!((item.adult)&&(info))' class="poster" v-bind:src="(imgPath+item.poster_path)"> 
+                        <div @mouseleave='hideInfo(item)' v-else v-show='info' class="data-film">                     
                             <h4>
                                 <span>Titolo :</span>  
                                 {{item.title}} 
@@ -63,12 +63,21 @@
                                 <i class="far fa-star" v-for="elem in (5 - showStars(item.vote_average))"></i>
                             </h6>
                             <h6 >
-                                <span v-if='item.overview!=""'>Overview:</span>
+                                <span   v-if='item.overview!=""'>Overview:</span>
                                 {{item.overview}}
                             </h6>
-                        </div>
+                            <span  class='actors-label actors-pop' @click=' showActors(item.id)'>Attori principali :</span>
+                            
+                            <span class='actors-label' v-for="actor in actors"  v-if="(item.id == movieID) && (info) && (item.adult)">
+                                
+                                <br> {{ actor.name }}
+                            </span>
+                        
+                       
+                        
 
                     </li>
+                   
                 </ul>
                 <h2 class='label-list' v-if='(tvSeries.length)>0'>Serie TV :</h2>
                 <ul class="series-list">
@@ -94,6 +103,12 @@
                                 <span v-if='item.overview!=""'>Overview:</span>
                                 {{item.overview}}
                             </h6>
+                            <span  class='actors-label actors-pop' @click=' showActors(item.id)'>Attori principali :</span>
+                            
+                            <span class='actors-label' v-for="actor in actors"  v-if="(item.id == movieID) && (info) && (item.vote_count)">
+                                
+                                <br> {{ actor.name }}
+                            </span>
                         </div>   
 
                     </li>

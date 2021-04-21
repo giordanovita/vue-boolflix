@@ -18,7 +18,9 @@ body{
 header{
     height: 110px;
     width: 100%;
-    background:rgb(5, 6, 7)
+     background:rgb(5, 6, 7);
+     /* background:rgb(50, 58, 70) */
+
 }
 
 .header-cont{
@@ -44,7 +46,9 @@ header{
     padding: 10px 15px 10px 45px;
     font-size: 20px;
     border-radius: 10px;
-    background-color: rgb(27, 27, 27);
+     background-color: rgb(27, 27, 27);
+/*      background-color: rgb(34, 45, 58);
+ */
     border:none;
     color: white;
     position:relative;
@@ -64,7 +68,9 @@ main{
     width: 100%;
     min-height:calc(100% - 110px);
     height:auto;
-    background-color: rgb(27, 27, 27);
+     background-color: rgb(27, 27, 27);
+    /*  background-color: rgb(34, 45, 58); */
+
 
 }
 
@@ -167,6 +173,16 @@ li{
        width: 50%;
        color: white;
        padding-top: 20px;
+   }
+
+   .actors-label{
+       font-size: 0.67em;
+       color: white;
+   }
+
+   .actors-pop{
+       cursor: pointer;
+       color: grey;
    }
 
 
