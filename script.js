@@ -78,17 +78,10 @@ function initVue(){
                 },
 
                 showFlag:function(language){
+                    let arrLangueage=['en','it','es','de']
 
-                    if(language =='en'){
-                        return '<img src="img/england.png">';
-                    }else if(language =='it'){
-                        return '<img src="img/it.png">';
-                    }
-                    else if(language =='de'){
-                        return '<img src="img/de.png">';
-                    }
-                    else if(language =='es'){
-                        return '<img src="img/es.png">';
+                    if(arrLangueage.includes(language)){
+                        return '<img src="img/'+language+'.png">';
                     }
                     else{
                         return language.toUpperCase();
