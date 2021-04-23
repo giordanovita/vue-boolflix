@@ -21,7 +21,12 @@ function initVue(){
             'intro':true,
             'researchedList':false,
              actors:[],
-             movieID:''
+             movieID:'',
+             flag:{ 
+                'en' : 'img/en.png',
+                'it' : 'img/it.png'
+
+             }             
 
                     },
          
@@ -75,17 +80,6 @@ function initVue(){
                     this.intro=true;
                     this.researchedList=false
 
-                },
-
-                showFlag:function(language){
-                    let arrLangueage=['en','it','es','de']
-
-                    if(arrLangueage.includes(language)){
-                        return '<img src="img/'+language+'.png">';
-                    }
-                    else{
-                        return language.toUpperCase();
-                    }
                 },
 
                 showStars:function(elem){

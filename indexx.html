@@ -13,7 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
-<!--     <a href="https://fontmeme.com/netflix-font/"><img src="https://fontmeme.com/permalink/210419/4a516320d47a6a57a93d3cb02a3ef22f.png" alt="netflix-font" border="0"></a>   <!-- css -->
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
@@ -56,7 +55,17 @@
                                 <span>Titolo originale:</span>
                                 {{item.original_title}}
                             </h6>
-                            <span class='flag' v-html="showFlag(item.original_language)">  </span>
+                            <span v-if="flag[item.original_language]" >
+                                <img class="flag"  :src="flag[item.original_language]"> 
+
+
+                            </span>
+                            <span class="flag" v-else>
+                                {{item.original_language.toUpperCase()}}
+
+                            </span>
+                    
+                            
                             <h6 >
                                 <span>Voto:</span>
                                 <i class="fas fa-star" v-for="elem in showStars(item.vote_average)"></i>
@@ -72,9 +81,6 @@
                                 
                                 <br> {{ actor.name }}
                             </span>
-                        
-                       
-                        
 
                     </li>
                    
@@ -93,7 +99,13 @@
                                 <span>Titolo originale:</span>  
                                 {{item.original_name}}
                             </h6>
-                            <div class='flag' v-html="showFlag(item.original_language)">  </div>
+                            <span v-if="flag[item.original_language]" >
+                                <img class="flag"  :src="flag[item.original_language]"> 
+                            </span>
+                            <span class="flag" v-else>
+                                {{item.original_language.toUpperCase()}}
+                            </span>
+                    
                             <h6 >
                                 <span>Voto:</span>
                                 <i class="fas fa-star" v-for="elem in showStars(item.vote_average)"></i>
